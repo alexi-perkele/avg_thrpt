@@ -7,7 +7,6 @@
 
 Averager::Averager(uint32_t avg_time_s) : avg_time_(avg_time_s)
 {
-    std::cout << "hello averager!" << std::endl;
 };
 
 void Averager::SetAveragingTime(uint32_t avg_time_s)
@@ -16,15 +15,18 @@ void Averager::SetAveragingTime(uint32_t avg_time_s)
 }
 float Averager::GetAverageSpeed() const
 {
-    std::cout << "get average speed:" << std::endl;
     auto sum = std::accumulate(values_.begin(),values_.end(),decltype(values_)::value_type(0));
-    float res = static_cast<float>(sum)/avg_time_;
+    float res =0;
+    if(avg_time_!=0)
+    {
+        float res = static_cast<float>(sum)/avg_time_;
+    }
+
     return  res;
 }
 
 void Averager::AddValue(uint32_t value)
 {
-    std::cout << "Add value " << value << std::endl;
     values_.push_back(value);
 }
 
